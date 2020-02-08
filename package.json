@@ -25,7 +25,7 @@
     "prepare": "babel -d build/ plugin/"
   },
   "dependencies": {
-    "core-js": "^3.6.4",
+    "core-js": "^2.6.11",
     "require-resolve": "0.0.2"
   },
   "devDependencies": {

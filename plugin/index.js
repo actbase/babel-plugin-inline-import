@@ -10,6 +10,8 @@ export default function({ types: t }) {
               const givenPath = path.node.source.value;
               let reference = state && state.file && state.file.opts.filename;
               const extensions = state && state.opts && state.opts.extensions;
+              
+              console.log(givenPath);
 
               if (BabelInlineImportHelper.shouldBeInlined(givenPath, extensions)) {
                 if (path.node.specifiers.length > 1) {

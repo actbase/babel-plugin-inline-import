@@ -10,8 +10,9 @@ export default function({ types: t }) {
               const givenPath = path.node.source.value;
               let reference = state && state.file && state.file.opts.filename;
               const extensions = state && state.opts && state.opts.extensions;
+              const refextends = state && state.opts && state.opts.refextends;
               
-              if (BabelInlineImportHelper.shouldBeInlined(givenPath, extensions)) {
+              if (BabelInlineImportHelper.shouldBeInlined(reference, refextends) && BabelInlineImportHelper.shouldBeInlined(givenPath, extensions)) {
                 if (path.node.specifiers.length > 1) {
                   throw new Error(`Destructuring inlined import is not allowed. Check the import statement for '${givenPath}'`);
                 }

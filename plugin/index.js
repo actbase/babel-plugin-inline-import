@@ -11,8 +11,6 @@ export default function({ types: t }) {
               let reference = state && state.file && state.file.opts.filename;
               const extensions = state && state.opts && state.opts.extensions;
               
-              console.log(givenPath);
-
               if (BabelInlineImportHelper.shouldBeInlined(givenPath, extensions)) {
                 if (path.node.specifiers.length > 1) {
                   throw new Error(`Destructuring inlined import is not allowed. Check the import statement for '${givenPath}'`);
@@ -21,6 +19,8 @@ export default function({ types: t }) {
                 const id = path.node.specifiers[0].local.name;
                 const content = BabelInlineImportHelper.getContents(givenPath, reference);
                 const variable = t.variableDeclarator(t.identifier(id), t.stringLiteral(content));
+
+		console.log(variable);
 
                 path.replaceWith({
                   type: 'VariableDeclaration',
@@ -33,6 +33,9 @@ export default function({ types: t }) {
                     }
                   ]
                 });
+
+
+
               }
             }
           }

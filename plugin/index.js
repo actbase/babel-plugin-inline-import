@@ -1,5 +1,4 @@
 import BabelInlineImportHelper from './helper';
-import transform from "css-to-react-native-transform";
 
 export default function({ types: t }) {
   class BabelInlineImport {
@@ -20,9 +19,7 @@ export default function({ types: t }) {
 
                 const id = path.node.specifiers[0].local.name;
                 const content = transform(BabelInlineImportHelper.getContents(givenPath, reference));
-		const resultData = `JSON.parse("${JSON.stringify(content)}")`;
-                const variable = t.variableDeclarator(t.identifier(id), t.objectExpression(content)); //t.stringLiteral(resultData));
-
+                const variable = t.variableDeclarator(t.identifier(id), t.stringLiteral(content));
 
                 path.replaceWith({
                   type: 'VariableDeclaration',
@@ -35,8 +32,6 @@ export default function({ types: t }) {
                     }
                   ]
                 });
-
-
 
               }
             }

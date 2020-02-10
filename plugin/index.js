@@ -18,7 +18,7 @@ export default function({ types: t }) {
                 }
 
                 const id = path.node.specifiers[0].local.name;
-                const content = transform(BabelInlineImportHelper.getContents(givenPath, reference));
+                const content = (BabelInlineImportHelper.getContents(givenPath, reference));
                 const variable = t.variableDeclarator(t.identifier(id), t.stringLiteral(content));
 
                 path.replaceWith({

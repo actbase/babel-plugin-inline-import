@@ -21,7 +21,7 @@ export default function({ types: t }) {
                 const id = path.node.specifiers[0].local.name;
                 const content = (BabelInlineImportHelper.getContents(givenPath, reference));
 		const resultData = `JSON.parse("${JSON.stringify(content)}")`;
-                const variable = t.variableDeclarator(t.identifier(id), t.stringLiteral(resultData));
+                const variable = t.variableDeclarator(t.identifier(id), content); //t.stringLiteral(resultData));
 
 
                 path.replaceWith({

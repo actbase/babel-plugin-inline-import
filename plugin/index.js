@@ -21,7 +21,7 @@ export default function({ types: t }) {
                 const content = BabelInlineImportHelper.getContents(givenPath, reference);
                 const variable = t.variableDeclarator(t.identifier(id), t.stringLiteral(content));
 
-		console.log(variable);
+		console.log(content);
 
                 path.replaceWith({
                   type: 'VariableDeclaration',

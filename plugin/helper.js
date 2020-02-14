@@ -25,6 +25,20 @@ export default class BabelInlineImportHelper {
     return false;
   }
 
+  static shouldBeInlinedIndexOf(givenPath, extensions) {
+    const accept = (typeof extensions === 'string')
+      ? [extensions]
+      : (extensions || BabelInlineImportHelper.extensions);
+
+    for (const extension of accept) {
+      if (givenPath.indexOf(extension) >= 0) {
+        return true;
+      }
+    }
+
+    return false;
+  }
+
   static getContents(givenPath, reference) {
     if (!reference) {
       throw new Error('"reference" argument must be specified');
